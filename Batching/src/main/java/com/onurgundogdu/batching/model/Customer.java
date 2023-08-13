@@ -1,31 +1,19 @@
 package com.onurgundogdu.batching.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Customer {
+    private Long customerId;
     private String firstName;
     private String lastName;
     private int age;
     private String email;
     private String phoneNumber;
 
-
-    public User() {
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public String getFirstName() {
