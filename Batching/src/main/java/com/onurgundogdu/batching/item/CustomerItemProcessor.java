@@ -3,7 +3,6 @@ package com.onurgundogdu.batching.item;
 import com.onurgundogdu.batching.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.batch.item.ItemProcessor;
 
 public class CustomerItemProcessor implements ItemProcessor<Customer, Customer> {
@@ -18,12 +17,10 @@ public class CustomerItemProcessor implements ItemProcessor<Customer, Customer> 
         final String email = customer.getEmail();
         final String phoneNumber = customer.getPhoneNumber();
 
+        final Customer transformedCustomer = new Customer(firstName, lastName, age, email, phoneNumber);
 
-        final Customer transformedPerson = new Customer(firstName, lastName,age,email,phoneNumber);
+        log.info("Converting ({}) into ({})", customer, transformedCustomer);
 
-        log.info("Converting (" + customer + ") into (" + transformedPerson + ")");
-
-        return transformedPerson;
+        return transformedCustomer;
     }
-
 }

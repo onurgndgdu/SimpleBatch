@@ -3,11 +3,11 @@ package com.onurgundogdu.batching;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.onurgundogdu.batching")
 public class BatchingApplication {
 
     public static void main(String[] args) {
-        System.exit(SpringApplication.exit(SpringApplication.run(BatchingApplication.class, args)));
+        SpringApplication.run(BatchingApplication.class, args);
     }
 
 }

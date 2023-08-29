@@ -7,6 +7,9 @@ public class Customer {
     private String email;
     private String phoneNumber;
 
+    public Customer() {
+    }
+
     public Customer(String firstName, String lastName, int age, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -14,8 +17,6 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
-
-
 
     public String getFirstName() {
         return firstName;
@@ -60,7 +61,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +

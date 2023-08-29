@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,24 +16,28 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public JobCompletionNotificationListener(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
+    public void beforeJob(JobExecution jobExecution) {
+        // Before job execution logic, if needed
+    }
+
+    @Override
     public void afterJob(JobExecution jobExecution) {
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("!!! JOB FINISHED! Time to verify the results");
 
-            jdbcTemplate.query("SELECT first_name, last_name,age,email,phone_number FROM customer",
+            jdbcTemplate.query("SELECT first_name, last_name, age, email, phone_number FROM customer",
                     (rs, row) -> new Customer(
-                            rs.getString(1),
-                            rs.getString(2),
-                            rs.getInt(3),
-                            rs.getString(4),
-                            rs.getString(5))
-            ).forEach(customer -> log.info("Found <{{}}> in the database.", customer));
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getInt("age"),
+                            rs.getString("email"),
+                            rs.getString("phone_number"))
+            ).forEach(customer -> log.info("Found {} in the database.", customer));
         }
     }
 }
