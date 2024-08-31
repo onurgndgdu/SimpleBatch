@@ -1,21 +1,20 @@
-# Spring Batch Örnek Projesi
+# Spring Batch
 
-Bu proje, Spring Batch framework'ünün kullanımını örneklemek için oluşturulmuş bir projedir. Spring Batch, toplu veri işleme senaryolarını kolayca yönetmek ve otomasyon sağlamak için kullanılan bir çerçevedir.
+This project was created to demonstrate the use of the Spring Batch framework. Spring Batch is a framework used to easily manage and automate batch data processing scenarios.
 
-Proje Açıklaması
-Bu proje, basit bir veri işleme senaryosunu simüle eder. CSV formatında bulunan kullanıcı verilerini okur, işler ve sonuçları veritabanına kaydeder. Temel bileşenler aşağıdaki gibidir:
+Project Description
+This project simulates a simple data processing scenario. It reads user data in CSV format, processes it, and saves the results to the database. The main components are as follows:
 
-Veri Okuma: CSV dosyasındaki kullanıcı verileri FlatFileItemReader kullanılarak okunur.
-Veri İşleme: Okunan her kullanıcı verisi, CustomerItemProcessor ile işlenir. Bu işlem sırasında kullanıcı verileri üzerinde dönüşümler ve manipülasyonlar yapılabilir.
-Veri Yazma: İşlenen kullanıcı verileri, JdbcBatchItemWriter kullanılarak veritabanına yazılır.
-Zamanlanmış İş: @Scheduled annotasyonu kullanılarak belirli aralıklarla veri işleme işlemi otomatik olarak gerçekleştirilir.
-Kullanım
-Projenin ana dizinindeki src/main/resources klasörü altına User.csv adında örnek bir CSV dosyası ekleyin. Bu dosya içinde kullanıcı verilerini barındırmalıdır.
+Data Reading: The user data from the CSV file is read using FlatFileItemReader.
+Data Processing: Each user record read from the file is processed by CustomerItemProcessor. During this process, transformations and manipulations can be performed on the user data.
+Data Writing: The processed user data is written to the database using JdbcBatchItemWriter.
+Scheduled Job: The data processing task is automatically executed at specified intervals using the @Scheduled annotation.
 
-Veritabanı bağlantı bilgilerini src/main/resources/application.properties dosyasında yapılandırın.
-
+### Usage
+Add a sample CSV file named User.csv under the src/main/resources directory of the project. This file should contain user data.
+Configure the database connection details in the src/main/resources/application.properties file.
+Run the project using:
 
 bash
 ./mvnw spring-boot:run
-Proje çalıştığında, belirli aralıklarla CSV dosyasındaki kullanıcı verileri işlenecek ve veritabanına kaydedilecektir.
-
+Once the project is running, the user data from the CSV file will be processed and saved to the database at regular intervals.
